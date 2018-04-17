@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Spoofer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script type="text/javascript" src ="js/jquery.js" ></script>
+    <script type="text/javascript" src="js/plotly.js"></script>
+    <script src="js/js_apis.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+	<style>
+    body{
+      background-image:url("img/bg1.jpg") ;
+      font-family: 'Open Sans', sans-serif;
+  }
+  .header-text{
+    color: black;
+    background: none;
+
+}
+.header-text:hover{
+    color: #5b3256;
+    background: black;
+}
+.nav-list{
+    padding-right: 100px;
+    font-size: larger;
+    margin-top: 14px;
+    font-size: 20px;
+}
+.logo-img{
+    width: 50px;
+    height: 50px;
+    margin-top: 4px;
+    padding: 0px;
+    transition-duration: 0.5s;
+}
+.logo-img:hover{
+    transform: rotate(20deg);
+}
+#heading{
+    margin-top: 8px;
+    padding: 0px;
+    margin-right: 0px;
+    color: #1D1F20;
+}
+.nav-logo{
+    padding: 0px;
+}
+.login-btn{
+    margin-top: 11px;
+    margin-left: 10px;
+}
+.btn{
+    background-color:#8B008B ;
+    color: whitesmoke;
+    transition-duration: 0.5s;
+}
+.btn:hover{
+    background-color: #581845;
+    background-position: right center;
+    color: whitesmoke;
+}
+#header{
+    border: 1px solid black;
+    width: 100%;
+    background-color: whitesmoke;
+}
+.header-container{
+    border-bottom: 0.1px solid lightgrey;
+    height: 70px;
+    width: 100%;
+    background-color: whitesmoke;
+}
+.btn-bar-top{
+    height: 70px;
+    border-left: 0.1px solid lightgrey;
+}
+.nav-links{
+    color: black;
+    transition-duration: 0.5s;
+    transition: transform .5s .2s;
+    transform-origin: 100% 100%;
+}
+.nav-links:hover{
+    color: purple;
+    text-underline: none;
+}
+.affix ~ .container-fluid {
+    position: relative;
+    top: 50px;
+}
+.affix {
+    top:0;
+    width: 100%;
+    z-index: 9999 !important;
+}
+</style>
+<nav id ="Header" data-spy="affix" data-offset-top="80">
+    <div class="header-container container">
+        <div class="col-lg-5 col-md-5 col-sm-5" id="header-navbar">
+            <ul class="nav  navbar-nav navbar-left nav-first">
+                <li class="nav-logo">
+                    <img src="img/logo.png" class="logo-img" alt="logo">
+                </li>
+                <li class="nav-logo">
+                 <h1 id="heading">Spoofer</h1>
+             </li>
+         </ul>
+     </div>
+ </div>
+</nav>
+<style>
+.login-content{
+    font-size: 25px;
+    margin-top: 20px;
+}
+.login-header{
+    font-size: 60px;
+}
+.login-texts{
+    color: White;
+    text-align: center;
+    margin-top: 100px;
+}
+.login-page{
+    background-image:url("img/bg1.jpg") ;
+    height: 580px;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+.container{
+    width: 100%;
+    margin-left: 0px;
+}
+.login-fields{
+    width: 300px;
+    height: 50px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+    transition-duration: 0.5s;
+    background-color:#d5d5d5;
+    margin-left: 20px;
+}
+.login-fields:hover{
+    background-color: white;
+}
+.login-labels{
+    padding: 5px;
+    margin-left: 25px;
+    font-size: 20px;
+
+}
+.login-form{
+    padding-top: 20px;
+    margin-left: 8px;
+    background-color: white;
+    height: 300px;
+    margin-top: 140px;
+    border-radius: 4px;
+    width: 360px;
+    padding-left: 8px;
+}
+.login-btn{
+    background-image: linear-gradient(to   right, #900C3F 51%, #581845 100%);
+    position: center ;
+    margin-top: 20px;
+    margin-left: 40px;
+    font-size: 15px;
+    width: 254px;
+    height: 40px;
+    padding: 0px;
+    font-size: 12px;
+    transition-duration: 1s;
+}
+.login-btn:hover{
+    background-image: linear-gradient(to  top right, #900C3F 0%, #581845 100%);
+}
+</style>
+<div class="container login-page" id="login">
+    <div class="col-lg-7 col-md-7 col-sm-7 login-texts">
+        <h1 class="login-header">Spoofer</h1>
+        <p class="login-content">
+           A system that would help customer<br>
+           to detect and act against the<br>
+           intruders trying to get access<br>
+           to the system by using <br>
+           ARP spoof Detector
+       </p>
+   </div>
+   <div class="col-lg-5 col-md-5 col-sm-5">
+    <form class="login-form">
+        <label class="login-labels">UserName</label><br>
+        <input type="text" class="login-fields" placeholder="UserName" id='username_field' >
+        <label class="login-labels">Password</label><br>
+        <input type="password" class="login-fields" placeholder="Password" id='password_field'>                
+        <div class="btn-login-moda">
+            <button type="button" class="btn  login-btn"  id="login_btn">LogIn </button>
+
+        </div>
+    </form>
+</div>
+</div>
+<style type="text/css">
+
+</style>
+
+<script>  	
+ var infections ='';
+ var date='';
+ var victim_mac='';
+ var pretend_ip='';
+ var token ="";
+ $('#login_btn').click(function(){
+     var data= {
+        "username": $('#username_field').val(),
+        "password": $('#password_field').val()
+    };
+    $.ajax({
+        type: 'post',
+        url: 'http://localhost:8000/login',
+        data: data,
+        success:function(htm){
+           var now = new Date();
+           var time = now.getTime();
+           time += 1*3600 * 1000;
+           now.setTime(time);
+
+           console.log(htm.token + now.toUTCString());
+
+           document.cookie = "token="+htm.token+"; expires="+ now.toUTCString() +"; path=/";
+           console.log(document.cookie);
+           location.href="dashboard.html";
+       }
+   });
+});
+
+
+</script>
+</body>
+</html>
