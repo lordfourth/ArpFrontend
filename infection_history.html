@@ -1,0 +1,83 @@
+<html>
+<head>
+	<title>Infection history</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<script type="text/javascript" src ="js/jquery.js" ></script>
+	<script src="js/js_apis.js"></script>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script>
+		console.log('hello'+getCookie('token'));
+	</script>
+</head>
+<body>
+	<div id="myDiv"><!-- Loading.... --></div>
+	<script type="text/javascript">
+		
+		var trace=[];
+		function getCookie(cname) {
+			var name = cname + "=";
+			var decodedCookie = decodeURIComponent(document.cookie);
+			var ca = decodedCookie.split(';');
+			for(var i = 0; i <ca.length; i++) {
+				var c = ca[i];
+				while (c.charAt(0) == ' ') {
+					c = c.substring(1);
+				}
+				if (c.indexOf(name) == 0) {
+					return c.substring(name.length, c.length);
+				}
+			}
+			return "";
+		};
+
+		token=getCookie('token');
+
+		window.onload=function(){
+			$.ajax({
+				type: 'GET',
+				url: 'http://localhost:8000/infection/history',
+				headers: { "Authorization": 'Token ' + token },
+				success:function(htm){
+					console.log('Reply was successfull:');
+					console.log(htm);
+					// console.log(htm);
+					// console.log(htm[0].employee_id);
+					// console.log(htm[0].infections[0].victim_ip);
+					
+					for(var k=0;k<htm.length;k++){
+						trace[k]={};
+						trace[k]['x'] = [];
+						trace[k]['y'] = [];
+					}
+
+					for(var k=0;k<htm.length;k++){
+						for(var i=0;i<htm[k].infections.length;i++){
+							var date_time=htm[k].infections[i].timestamp;
+							var date_time_obj = new Date(date_time);
+							var infect_date =date_time_obj.getDate();
+							trace[k].x[i]=infect_date;
+							trace[k].y[i]=12;
+						}	
+						trace[k]['name']=htm[k].employee_id;
+						trace[k]['type']='bar';
+					}
+
+					var data =[];
+					console.log(trace);
+					console.log('trace Length: '+trace.length);
+					for(var i=0;i<trace.length;i++){
+						data.push($.extend({},trace[i]));
+					}
+					console.log("Data to plot:\n",data);
+					// var data = [trace1, trace2,trace3,$.extend({},trace[3])];
+
+					var layout = {barmode: 'stack'};
+
+					Plotly.newPlot('myDiv', data, layout);
+				}
+			});
+		};
+		</script>
+	</body>
+	</html>

@@ -7,228 +7,274 @@
 <script src="js/js_apis.js"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script>
-	console.log('hello'+getCookie('token'));
+  console.log('hello'+getCookie('token'));
 </script>
 </head>
 <body>
-	<style>
-	body{
-		font-family: 'Open Sans', sans-serif;
-	}
-	.header-text{
-		color: black;
-		background: none;
+    <style>
+    body{
+      background-image:url("img/bg1.jpg") ;
+      font-family: 'Open Sans', sans-serif;
+  }
+  .header-text{
+    color: black;
+    background: none;
 
-	}
-	.header-text:hover{
-		color: #5b3256;
-		background: black;
-	}
-	.nav-list{
-		padding-right: 100px;
-		font-size: larger;
-		margin-top: 14px;
-		font-size: 20px;
-	}
-	.logo-img{
-		width: 50px;
-		height: 50px;
-		margin-top: 4px;
-		padding: 0px;
-		transition-duration: 0.5s;
-	}
-	.logo-img:hover{
-		transform: rotate(20deg);
-	}
-	#heading{
-		margin-top: 8px;
-		padding: 0px;
-		margin-right: 0px;
-		color: #1D1F20;
-	}
-	.nav-logo{
-		padding: 0px;
-	}
-	.login-btn{
-		margin-top: 11px;
-		margin-left: 10px;
-	}
-	.btn{
-		background-color:#8B008B ;
-		color: whitesmoke;
-		transition-duration: 0.5s;
-	}
-	.btn:hover{
-		background-color: #581845;
-		background-position: right center;
-		color: whitesmoke;
-	}
-	#header{
-		border: 1px solid black;
-		width: 100%;
-		background-color: white;
-	}
-	.header-container{
-		border-bottom: 0.1px solid lightgrey;
-		height: 70px;
-		width: 100%;
-		background-color: white;
-	}
-	.btn-bar-top{
-		height: 70px;
-		border-left: 0.1px solid lightgrey;
-	}
-	.nav-links{
-		color: black;
-		transition-duration: 0.5s;
-		transition: transform .5s .2s;
-		transform-origin: 100% 100%;
-	}
-	.nav-links:hover{
-		color: purple;
-		text-underline: none;
-	}
-	.affix ~ .container-fluid {
-		position: relative;
-		top: 50px;
-	}
-	.affix {
-		top:0;
-		width: 100%;
-		z-index: 9999 !important;
-	}
+}
+.header-text:hover{
+    color: #5b3256;
+    background: black;
+}
+.nav-list{
+    padding-right: 100px;
+    font-size: larger;
+    margin-top: 14px;
+    font-size: 20px;
+}
+.logo-img{
+    width: 50px;
+    height: 50px;
+    margin-top: 4px;
+    padding: 0px;
+    transition-duration: 0.5s;
+}
+.logo-img:hover{
+    transform: rotate(20deg);
+}
+#heading{
+    margin-top: 8px;
+    padding: 0px;
+    margin-right: 0px;
+    color: #1D1F20;
+}
+.nav-logo{
+    padding: 0px;
+}
+.login-btn{
+    margin-top: 11px;
+    margin-left: 10px;
+}
+.btn{
+    background-color:#8B008B ;
+    color: whitesmoke;
+    transition-duration: 0.5s;
+}
+.btn:hover{
+    background-color: #581845;
+    background-position: right center;
+    color: whitesmoke;
+}
+#header{
+    border: 1px solid black;
+    width: 100%;
+    background-color: white;
+}
+.header-container{
+    border-bottom: 0.1px solid lightgrey;
+    height: 70px;
+    width: 100%;
+    background-color: white;
+}
+.btn-bar-top{
+    height: 70px;
+    border-left: 0.1px solid lightgrey;
+}
+.nav-links{
+    color: black;
+    transition-duration: 0.5s;
+    transition: transform .5s .2s;
+    transform-origin: 100% 100%;
+}
+.nav-links:hover{
+    color: purple;
+    text-underline: none;
+}
+.affix ~ .container-fluid {
+    position: relative;
+    top: 50px;
+}
+.affix {
+    top:0;
+    width: 100%;
+    z-index: 9999 !important;
+}
+.graph{
+   height: 80%;
+   margin-right: : 30px;
+}
+.history-btn{
+   margin-left: 30px;
+}
 </style>
 <nav id ="Header" data-spy="affix" data-offset-top="80">
-	<div class="header-container container">
-		<div class="col-lg-5 col-md-5 col-sm-5" id="header-navbar">
-			<ul class="nav  navbar-nav navbar-left nav-first">
-				<li class="nav-logo">
-					<img src="img/logo.png" class="logo-img" alt="logo">
-				</li>
-				<li class="nav-logo">
-					<h1 id="heading">Spoofer</h1>
-				</li>
-			</ul>
-		</div>
-	</div>
+    <div class="header-container container">
+        <div class="col-lg-5 col-md-5 col-sm-5" id="header-navbar">
+            <ul class="nav  navbar-nav navbar-left nav-first">
+                <li class="nav-logo">
+                    <img src="img/logo.png" class="logo-img" alt="logo">
+                </li>
+                <li class="nav-logo">
+                   <h1 id="heading">Spoofer</h1>
+               </li>
+           </ul>
+       </div>
+   </div>
 </nav>
 
-<button type="button" class="btn  login-btn"  id="get_info">LogIn </button>
+<!-- <style type="text/css">
+.login-content{
+    font-size: 25px;
+    margin-top: 20px;
+}
+.login-header{
+    font-size: 60px;
+}
+.login-texts{
+    color: White;
+    text-align: center;
+    
+}
+.container{
+    width: 100%;
+    margin-left: 0px;
+}
+.login-fields{
+    width: 300px;
+    height: 50px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+    transition-duration: 0.5s;
+    background-color:#d5d5d5;
+    margin-left: 20px;
+}
+.login-fields:hover{
+    background-color: white;
+}
+.login-labels{
+    padding: 5px;
+    margin-left: 25px;
+    font-size: 20px;
+}
+.login-form{
+    padding-top: 20px;
+    margin-left: 8px;
+    background-color: white;
+    height: 250px;
+    margin-top: 140px;
+    border-radius: 4px;
+    width: 360px;
+    padding-left: 8px;
+    margin-left: 70px;
+}
+.history-btn{
+    background-image: linear-gradient(to   right, #900C3F 51%, #581845 100%);
+    position: center ;
+    margin-top: 20px;
+    margin-left: 40px;
+    font-size: 15px;
+    width: 254px;
+    height: 40px;
+    padding: 0px;
+    font-size: 12px;
+    transition-duration: 1s;
+}
+.history-btn:hover{
+    background-image: linear-gradient(to  top right, #900C3F 0%, #581845 100%);
+}
+</style> -->
 <h1 id="ran1"></h1>
 <!-- Plotly chart will be drawn inside this DIV -->
-<div id="myDiv" class="graph"></div>
+<div class="container ">
+   <div id="myDiv" class="graph   col-sm-8">
+   </div>
+   <div class="col-lg-4 col-md-4 col-sm-4">
+    
+    	<!-- <form class="login-form">
+    	<label class="login-labels">Employee Id</label><br>
+        <input type="text" class="login-fields" placeholder="employee_id" id='employee_id' >
+    	 <button type="button" class="btn  history-btn"  id='history-btn'>Employee History </button>
+    	</form> -->
+    </div>
+</div>
 <script type="text/javascript">
-	var infections ='';
-	var flag=[];
-	var employees={};
-	var trace=[];
-	for(var k=0;k<4;k++){trace[k]={
-		x: [],
-		y: [],
+    var trace=[];
+    function getCookie(cname) {
+     var name = cname + "=";
+     var decodedCookie = decodeURIComponent(document.cookie);
+     var ca = decodedCookie.split(';');
+     for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+           c = c.substring(1);
+       }
+       if (c.indexOf(name) == 0) {
+           return c.substring(name.length, c.length);
+       }
+   }
+   return "";
+};
 
-	};}
+token=getCookie('token');
 
-	function getCookie(cname) {
-		var name = cname + "=";
-		var decodedCookie = decodeURIComponent(document.cookie);
-		var ca = decodedCookie.split(';');
-		for(var i = 0; i <ca.length; i++) {
-			var c = ca[i];
-			while (c.charAt(0) == ' ') {
-				c = c.substring(1);
-			}
-			if (c.indexOf(name) == 0) {
-				return c.substring(name.length, c.length);
-			}
-		}
-		return "";
-	}
-	token=getCookie('token');
-	window.onload=function(){
-		$.ajax({
-			type: 'GET',
-			url: 'http://localhost:8000/user/profile',
-			headers: { "Authorization": 'Token ' + token },
-			success:function(htm){
-				console.log(htm);
-				infections=htm.infections;
-				for(var k=0;k<infections.length;k++){
-					console.log(infections[k].victim_employee);
-					if (!(infections[k].victim_employee in employees)){
-						employees[infections[k].victim_employee] = {};
-          		employees[infections[k].victim_employee].x = [9, 10, 16, 17];//date array;
-          		employees[infections[k].victim_employee].y= [];
-          		employees[infections[k].victim_employee].name = infections[k].victim_employee;
-          		employees[infections[k].victim_employee].type= 'bar';
-          	}
-          	var date_obj = new Date(infections[k].timestamp);
-          	console.log(date_obj.getDate());
-          	if (!employees[infections[k].victim_employee].y[date_obj.getDate()]){
-          		employees[infections[k].victim_employee].y[date_obj.getDate()] = 0;
-          	}
-          	employees[infections[k].victim_employee].y[date_obj.getDate()]+=1;
+window.onload=function(){
+ $.ajax({
+    type: 'GET',
+    url: 'http://localhost:8000/infection/history',
+    headers: { "Authorization": 'Token ' + token },
+    success:function(htm){
+					// console.log('Reply was successfull:');
+					// console.log(htm);
+					// console.log(htm);
+					// console.log(htm[0].employee_id);
+					// console.log(htm[0].infections[0].victim_ip);
+					
+					for(var k=0;k<htm.length;k++){
+						trace[k]={};
+						trace[k]['x'] = [];
+						trace[k]['y'] = [];
+					}
 
-          	
-        // var n=0;
-         // distinct_IP[k]=[];
-        // for(var i=k;i<infections.length;i++){
-        //     if((infections[k].victim_ip==infections[i].victim_ip)&&flag[k]!=1){
-        //         if(i!=k)flag[i]=1;distinct_IP[k][n]=i;n++;
-        //     }console.log(k+""+i+""+distinct_IP[k][i]);
-        // }
-    }
-    console.log(employees);
+					for(var k=0;k<htm.length;k++){
+						for(var i=0;i<htm[k].infections.length;i++){
+							var date_time=htm[k].infections[i].timestamp;
+							var date_time_obj = new Date(date_time);
+							var infect_date =date_time_obj.getDate();
+							trace[k].x[i]=infect_date;
+							trace[k].y[i]=12;
+						}	
+						trace[k]['name']=htm[k].employee_id;
+						trace[k]['type']='bar';
+					}
 
+					var data =[];
+					// console.log(trace);
+					// console.log('trace Length: '+trace.length);
+					for(var i=0;i<trace.length;i++){
+						data.push($.extend({},trace[i]));
+					}
+					// console.log("Data to plot:\n",data);
+					// var data = [trace1, trace2,trace3,$.extend({},trace[3])];
 
-     // for(var k=0;k<distinct_IP.length;k++){
-     //    for(var i=0;i<distinct_IP[i].length;i++){
-     //        var date_time = infections[distinct_IP[k][i]].timestamp;
-     //     var date_time_obj = new Date(date_time);
-     //     var infect_date =date_time_obj.getDate();
-     //        trace[k].x[i]=infect_date;
-     //        trace[k].y[i]=1;
-     //        trace[k].name=infections[distinct_IP[k][i]].victim_employee;
-     //        trace[k].type ='bar';
-     //    }
-     // }
- }
-});}
+					var layout = {barmode: 'stack'};
 
+					Plotly.newPlot('myDiv', data, layout);
+				}
+			});
+};
+		// var data1=[];
+		// $('#history-btn').click(function(){
+		// 	console.log(trace);
+		// 	console.log($('#employee_id').val());
+		// 	for(var i=0;i<trace.length;i++){
+		// 		if(trace[i].name===$('#employee_id').val())data1.push($.extend({},trace[i]));
+		// 	}
+		// 	var layout = {barmode: 'stack'};
 
-
-
-
-		var trace1 = {
-			x: [1, 2, 2],
-			y: [20, 14, 23],
-			name: 'SF Zoo',
-			type: 'bar'
-		};
-
-		var trace2 = {
-			x: [2, 3, 4],
-			y: [12, 18, 29],
-			name: 'LA Zoo',
-			type: 'bar'
-		};
-		var trace3 = {
-			x: [2, 3, 4],
-			y: [13, 18, 29],
-			name: 'LA Zoo',
-			type: 'bar'
-		};
-		var trace4 = {
-			x: [2, 3, 4],
-			y: [12, 18, 29],
-			name: 'LA Zoo',
-			type: 'bar'
-		};
-
-		var data = [trace1, trace2,trace3,trace4,trace[0],];
-
-		var layout = {barmode: 'stack'};
-
-		Plotly.newPlot('myDiv', data, layout);
-	</script>
+		// 			Plotly.newPlot('myDiv', data1, layout);
+		// });
+    </script>
 </body>
 </html>

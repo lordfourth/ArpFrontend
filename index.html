@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Spoofer</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>Spoofer</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <script type="text/javascript" src ="js/jquery.js" ></script>
@@ -10,7 +12,7 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-	<style>
+    <style>
     body{
       background-image:url("img/bg1.jpg") ;
       font-family: 'Open Sans', sans-serif;
@@ -160,8 +162,10 @@
     padding-top: 20px;
     margin-left: 8px;
     background-color: white;
-    height: 300px;
+/*     height: 300px; */
     margin-top: 140px;
+    margin-bottom: 140px;
+    padding-bottom: 20px;
     border-radius: 4px;
     width: 360px;
     padding-left: 8px;
@@ -194,7 +198,8 @@
        </p>
    </div>
    <div class="col-lg-5 col-md-5 col-sm-5">
-    <form class="login-form">
+    <form class="login-form container">
+        <div id="error_dialog"></div>
         <label class="login-labels">UserName</label><br>
         <input type="text" class="login-fields" placeholder="UserName" id='username_field' >
         <label class="login-labels">Password</label><br>
@@ -210,34 +215,52 @@
 
 </style>
 
-<script>  	
+<script>    
  var infections ='';
  var date='';
  var victim_mac='';
  var pretend_ip='';
  var token ="";
  $('#login_btn').click(function(){
-     var data= {
-        "username": $('#username_field').val(),
-        "password": $('#password_field').val()
-    };
-    $.ajax({
-        type: 'post',
-        url: 'http://localhost:8000/login',
-        data: data,
-        success:function(htm){
-           var now = new Date();
-           var time = now.getTime();
-           time += 1*3600 * 1000;
-           now.setTime(time);
+   var username = $('#username_field').val();
+   var password = $('#password_field').val(); 
+   var data= {
+    "username": username,
+    "password": password
+};
+if (username==''){
+    $('#error_dialog').html('<div class="notify alert alert-danger"><b>Error: </b>Username field is empty</div>');
+    setTimeout(function(){ $('.notify').hide(); }, 3000);
+}else if (password==''){
+ $('#error_dialog').html('<div class="notify alert alert-danger"><b>Error: </b>Password field is empty</div>');
+ setTimeout(function(){ $('.notify').hide(); }, 3000);
+}else{
+  $.ajax({
+    type: 'post',
+    url: 'http://localhost:8000/login',
+    data: data,
+    success:function(htm, textStatus, xhr){
+       console.log(xhr.status);
+       var now = new Date();
+       var time = now.getTime();
+       time += 1*3600 * 1000;
+       now.setTime(time);
 
-           console.log(htm.token + now.toUTCString());
+       console.log(htm.token + now.toUTCString());
 
-           document.cookie = "token="+htm.token+"; expires="+ now.toUTCString() +"; path=/";
-           console.log(document.cookie);
-           location.href="dashboard.html";
-       }
-   });
+       document.cookie = "token="+htm.token+"; expires="+ now.toUTCString() +"; path=/";
+       console.log(document.cookie);
+       location.href="dashboard.html";
+   },
+   error:function(htm, textStatus, xhr){
+    if(xhr=='Forbidden'){
+        $('#error_dialog').html('<div class="notify alert alert-danger"><b>Error: </b>Incorrect credentials</div>');
+        setTimeout(function(){ $('.notify').hide(); }, 3000);
+    }
+}
+});
+}
+
 });
 
 
